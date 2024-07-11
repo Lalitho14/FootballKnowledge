@@ -1,0 +1,13 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+  {% for team in teams %}
+    <div id="loading" class="spinner"></div>
+    <div>
+      <h1>{{ team.id }}</h1>
+      <a href="{% url 'prediction' team.id %}"><h2>{{ team.name }}</h2></a>
+      <img src="{{ team.logo }}" alt="{{ team.name }}" width="20px" />
+    </div>
+  {% endfor %}
+  <script src="{% static '/js/imgloader.js' %}"></script>
+{% endblock %}

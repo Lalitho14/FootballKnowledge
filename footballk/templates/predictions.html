@@ -1,0 +1,111 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<div class="partido">
+  <img src="{{result.teams.home.logo}}" alt="Local" width="50px" height="50px">
+  <h1>{{ result.teams.home.name }} vs {{ result.teams.away.name }}</h1>
+  <img src="{{result.teams.away.logo}}" alt="Visita" width="50px" height="50px">
+</div>
+
+  <div class="stats">
+    <div class="statshome">
+      <div class="last5">
+        <h3>Goals</h3>
+        <div>
+          <h4>A favor</h4>
+          <p>Promedio : {{ result.teams.home.last_5.goals.for.average }}</p>
+          <p>Total : {{ result.teams.home.last_5.goals.for.total }}</p>
+        </div>
+        <div>
+          <h4>En contra</h4>
+          <p>Promedio : {{ result.teams.home.last_5.goals.against.average }}</p>
+          <p>Total : {{ result.teams.home.last_5.goals.against.total }}</p>
+        </div>
+      </div>
+      <div class="leagueForm">
+        <h4>Ultimos resultados</h4>
+        <p>{{ result.teams.home.league.form }}</p>
+        <div class="leagueMatchesLocal">
+          <h5>Local</h5>
+          <p>Victorias : {{ result.teams.home.league.fixtures.wins.home }}</p>
+          <p>Empates : {{ result.teams.home.league.fixtures.draws.home }}</p>
+          <p>Derrotas : {{ result.teams.home.league.fixtures.loses.home }}</p>
+          <h5>Visita</h5>
+          <p>Victorias : {{ result.teams.home.league.fixtures.wins.away }}</p>
+          <p>Empates : {{ result.teams.home.league.fixtures.draws.away }}</p>
+          <p>Derrotas : {{ result.teams.home.league.fixtures.loses.away }}</p>
+          <p>Total : {{ result.teams.home.league.fixtures.played }}</p>
+        </div>
+        <div class="Goals">
+          <h5>Goles A Favor Por Partido (Local)</h5>
+          <p>{{ result.teams.home.league.goals.for.average.home }}</p>
+          <h5>Goles A Favor Por Partido (Visita)</h5>
+          <p>{{ result.teams.home.league.goals.for.average.away }}</p>
+          <h5>Total</h5>
+          <p>{{ result.teams.home.league.goals.for.average.total }}</p>
+          <h5>Goles En Contra Por Partido (Local)</h5>
+          <p>{{ result.teams.home.league.goals.against.average.home }}</p>
+          <h5>Goles En Contra Por Partido (Visita)</h5>
+          <p>{{ result.teams.home.league.goals.against.average.away }}</p>
+          <h5>Total</h5>
+          <p>{{ result.teams.home.league.goals.against.average.total }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="statsaway">
+      <div class="last5">
+        <h3>Goals</h3>
+        <div>
+          <h4>A favor</h4>
+          <p>Promedio : {{ result.teams.away.last_5.goals.for.average }}</p>
+          <p>Total : {{ result.teams.away.last_5.goals.for.total }}</p>
+        </div>
+        <div>
+          <h4>En contra</h4>
+          <p>Promedio : {{ result.teams.away.last_5.goals.against.average }}</p>
+          <p>Total : {{ result.teams.away.last_5.goals.against.total }}</p>
+        </div>
+      </div>
+      <div class="leagueForm">
+        <h4>Ultimos resultados</h4>
+        <p>{{ result.teams.away.league.form }}</p>
+        <div class="leagueMatchesAway">
+          <h5>Local</h5>
+          <p>Victorias : {{ result.teams.away.league.fixtures.wins.home }}</p>
+          <p>Empates : {{ result.teams.away.league.fixtures.draws.home }}</p>
+          <p>Derrotas : {{ result.teams.away.league.fixtures.loses.home }}</p>
+          <h5>Visita</h5>
+          <p>Victorias : {{ result.teams.away.league.fixtures.wins.away }}</p>
+          <p>Empates : {{ result.teams.away.league.fixtures.draws.away }}</p>
+          <p>Derrotas : {{ result.teams.away.league.fixtures.loses.away }}</p>
+          <p>Total : {{ result.teams.away.league.fixtures.played }}</p>
+        </div>
+        <div class="Goals">
+          <h5>Goles A Favor Por Partido (Local)</h5>
+          <p>{{ result.teams.away.league.goals.for.average.home }}</p>
+          <h5>Goles A Favor Por Partido (Visita)</h5>
+          <p>{{ result.teams.away.league.goals.for.average.away }}</p>
+          <h5>Total</h5>
+          <p>{{ result.teams.away.league.goals.for.average.total }}</p>
+          <h5>Goles En Contra Por Partido (Local)</h5>
+          <p>{{ result.teams.away.league.goals.against.average.home }}</p>
+          <h5>Goles En Contra Por Partido (Visita)</h5>
+          <p>{{ result.teams.away.league.goals.against.average.away }}</p>
+          <h5>Total</h5>
+          <p>{{ result.teams.away.league.goals.against.average.total }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="UltimosResultados">
+    <h2>Ultimos Enfrentamientos</h2>
+    {% for h2h in result.h2h %}
+      <p>{{ h2h.teams.home.name }} {{ h2h.score.fulltime.home }} - {{ h2h.score.fulltime.away }} {{ h2h.teams.away.name }}</p>
+    {% endfor %}
+  </div>
+  <div>
+    <h2>POSIBLE RESULTADO : {{ result.predictions.winner.name }}</h2>
+    <h3>{{ result.predictions.advice }}</h3>
+    <h4>Local : {{ result.predictions.percent.home }} Empate : {{ result.predictions.percent.draw }} Visita : {{ result.predictions.percent.away }}</h4>
+  </div>
+{% endblock %}
